@@ -2,6 +2,7 @@ import unittest
 import time
 from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
+from selenium.webdriver.common.action_chains import ActionChains
 
 capabilities = dict(
     platformName='Android',
@@ -50,10 +51,17 @@ class TestAppium(unittest.TestCase):
         tambahbuku_btn = self.driver.find_element(by=AppiumBy.ID, value='com.startup.tugas_5_eureka:id/btnTambahBuku')
         tambahbuku_btn.click()
 
+        time.sleep(3)
+
+        actions = ActionChains(self.driver)
+        actions.w3c_actions.pointer_action.move_to_location(507, 1913)
+        actions.w3c_actions.pointer_action.pointer_down()
+        actions.w3c_actions.pointer_action.move_to_location(570, 334)
+        actions.w3c_actions.pointer_action.release()
+        actions.perform()
+
         time.sleep(5)
 
 
 if __name__ == '__main__':
     unittest.main()
-
-    #fghgh
